@@ -3,5 +3,5 @@ from django.urls import path, include
 from todo import views
 
 urlpatterns = [
-    path('', views.HomeView.as_view()),
+    path('/home', views.HomeView.as_view()),
 ]
