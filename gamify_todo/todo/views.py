@@ -1,9 +1,15 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from django.http import JsonResponse
+from rest_framework import viewsets
+from django.http import JsonResponse, HttpResponse
+from .serializers import TodoSerializer
+from .models import Todo
 
 # Create your views here.
 
-class HomeView(APIView):
-    def get(self, request):
-        return JsonResponse({'message': 'Hello, World from django and docker!'})
+def say_hello(request):
+    return HttpResponse('Hello World!')
+
+class TodoView(viewsets.ModelViewSet):
+    serializer_class = TodoSerializer
+    queryset = Todo.objects.all()
