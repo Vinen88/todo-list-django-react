@@ -8,3 +8,6 @@ class Todo(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)
     completed = models.BooleanField(default=False)
+    
+    def __str__(self) -> str:
+        return self.title

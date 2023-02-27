@@ -23,7 +23,7 @@ router.register(r'todos', views.TodoView, 'todo')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('todo/', include('todo.urls')),
-    path('api-auth/', include('rest_framework.urls')), #not sure if needed but going to keep for now!
+    #path('todo/', include('todo.urls')),
+   #path('api-auth/', include('rest_framework.urls')), #not sure if needed but going to keep for now!
     path('api/', include(router.urls)),
 ]
