@@ -14,9 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers
 from todo import views
+from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 router.register(r'todos', views.TodoView, 'todo')
@@ -24,6 +25,10 @@ router.register(r'todos', views.TodoView, 'todo')
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('todo/', include('todo.urls')),
-   #path('api-auth/', include('rest_framework.urls')), #not sure if needed but going to keep for now!
+    path('api-auth/', include('rest_framework.urls')), #not sure if needed but going to keep for now!
     path('api/', include(router.urls)),
+    path('accounts/', include('accounts.urls')),
+    path('profile/', include('user_profile.urls')),
 ]
+
+urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))] #should let react router take over?
