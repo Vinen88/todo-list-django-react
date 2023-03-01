@@ -20,7 +20,6 @@ const navbar = () => (
                     <li className="nav-item">
                         <NavLink className="nav-link" exact to="/">Home</NavLink>
                     </li>
-
                 </ul>
             </div>
         </div>

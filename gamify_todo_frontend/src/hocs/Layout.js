@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 const layout = ({ children }) => (
      <Fragment>
         <Navbar />
-        {children}
+        { children }
      </Fragment>
 );
 
