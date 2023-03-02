@@ -62,7 +62,7 @@ ROOT_URLCONF = 'gamify_todo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [], # [os.path.join(BASE_DIR, 'build')] maybe?
+        'DIRS': [os.path.join(BASE_DIR, 'build')], #maybe?
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

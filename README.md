@@ -21,6 +21,8 @@ docker-compose run web python manage.py [manage.py commands]
 ```
 
 might want to update template dirs in settings.py for django
+might want to switch package.json scripts -> build to "rm -rf ../gamify_todo/build && react-scripts build && cp -r build ../gamify_todo/build"
+"react-scripts build"
 
 ## useful urls
 

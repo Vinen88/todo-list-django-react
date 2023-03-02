@@ -47,23 +47,23 @@ class SignupView(APIView):
     permission_classes = (permissions.AllowAny, )
     
     def post(self, request, format=None):
-        data = self.request.data # type: ignore        
+        data = self.request.data # type: ignore
         username = data['username']
         password = data['password']
         re_password = data['re_password']
-        
         if password == re_password:
             try:
                 if User.objects.filter(username=username).exists():
                     return Response({'error': 'Username is already taken'})
                 else:
-                    if len(password < 6):
+                    if len(password) < 6:
                         return Response({'error': 'Password must be at least 6 characters'})
                     else:
+                        print("creating user")
                         user = User.objects.create_user(username=username, password=password)
                         user.save()
                         user = User.objects.get(id=user.id) #type: ignore
-                        user_profile = UserProfile(user=user, first_name='', email='', points=0) 
+                        user_profile = UserProfile(user=user, points=0) 
                         user_profile.save()
                         return Response({'success': 'User created successfully'})
             except:

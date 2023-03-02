@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { register } from '../actions/auth';
 import { Navigate } from 'react-router-dom';
+import CSRFToken from '../components/CSRFToken';
 
 const Register = ({ register }) => {
     const [formData, setFormData] = useState({
@@ -16,19 +17,22 @@ const Register = ({ register }) => {
     const onSubmit = e => {
         e.preventDefault();
         if (password === re_password){
+            console.log('SUCCESS');
+            console.log({username, password, re_password});
             register(username, password, re_password);
             setAccountCreated(true);
         }
     };
 
-    if (accountCreated){
+    if (accountCreated)
         return <Navigate to="/" />
-    }
+    
     return(
         <div className='container mt-5'>
             <h1>Register for an Account</h1>
             <p>Create an account!</p>
             <form onSubmit={e => onSubmit(e)}>
+                <CSRFToken />
                 <div className="form-group">
                     <label className='form-label'>Username:</label>
                     <input
@@ -36,8 +40,8 @@ const Register = ({ register }) => {
                         type='text'
                         placeholder='Username*'
                         name='username'
-                        value={username}
                         onChange={e => onChange(e)}
+                        value={username}
                         required
                     />
                 </div>
