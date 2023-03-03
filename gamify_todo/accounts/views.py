@@ -8,14 +8,13 @@ from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.utils.decorators import method_decorator
 from .serializers import UserSerializer
 
-@method_decorator(csrf_protect, name='dispatch')
 class CheckAuthenticatedView(APIView):
     def get(self, request, format=None):
         user = self.request.user
         try:
             if user.is_authenticated:
-                return Response({'isAuthenticated': True})
-            return Response({'isAuthenticated': False})
+                return Response({'isAuthenticated': 'success'})
+            return Response({'isAuthenticated': 'error'})
         except:
             return Response({'error': 'Something went wrong when checking if user is authenticated'})
 

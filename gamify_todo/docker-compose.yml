@@ -13,6 +13,7 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+      #- frontend
   db:
     image: postgres
     volumes:
@@ -21,4 +22,8 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+  # frontend:
+  #   build: ../gamify_todo_frontend
+  #   volumes:
+  #     - ../gamify_todo_frontend:/frontend
     
