@@ -5,7 +5,7 @@ import { register } from '../actions/auth';
 import { Navigate } from 'react-router-dom';
 import CSRFToken from '../components/CSRFToken';
 
-const Register = ({ register }) => {
+const Register = ({ register, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -23,9 +23,10 @@ const Register = ({ register }) => {
             setAccountCreated(true);
         }
     };
-
-    if (accountCreated)
-        return <Navigate to="/" />
+    if (isAuthenticated)
+        return <Navigate to="/dashboard" />
+    else if (accountCreated)
+        return <Navigate to="/login" />
     
     return(
         <div className='container mt-5'>
@@ -79,5 +80,8 @@ const Register = ({ register }) => {
         </div>
     );
 };
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(null, { register })(Register);
+export default connect(mapStateToProps, { register })(Register);

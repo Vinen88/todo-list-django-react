@@ -11,8 +11,9 @@ from .serializers import UserSerializer
 @method_decorator(csrf_protect, name='dispatch')
 class CheckAuthenticatedView(APIView):
     def get(self, request, format=None):
+        user = self.request.user
         try:
-            if User.is_authenticated:
+            if user.is_authenticated:
                 return Response({'isAuthenticated': True})
             return Response({'isAuthenticated': False})
         except:
@@ -61,10 +62,8 @@ class SignupView(APIView):
                     else:
                         print("creating user")
                         user = User.objects.create_user(username=username, password=password)
-                        user.save()
                         user = User.objects.get(id=user.id) #type: ignore
-                        user_profile = UserProfile(user=user, points=0) 
-                        user_profile.save()
+                        user_profile = UserProfile.objects.create(user=user, points=0) 
                         return Response({'success': 'User created successfully'})
             except:
                 return Response({'error': 'Something went wrong when creating user'})
