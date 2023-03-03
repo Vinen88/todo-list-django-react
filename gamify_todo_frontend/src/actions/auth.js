@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { load_user } from './profile';
 import { 
     REGISTER_SUCCESS, 
     REGISTER_FAIL,
@@ -57,10 +58,9 @@ export const login = ( username, password ) => async dispatch => {
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/accounts/login/`, body, config);
         if (res.data.success){
             dispatch({
-                type: LOGIN_SUCCESS,
-                payload: res.data.username
+                type: LOGIN_SUCCESS
             });
-            // load the user
+            dispatch(load_user());
         } else {
             dispatch({
                 type: LOGIN_FAIL

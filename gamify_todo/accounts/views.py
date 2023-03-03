@@ -29,7 +29,7 @@ class LoginView(APIView):
             user = auth.authenticate(username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-                return Response({'success': 'User logged in successfully', 'username': username})
+                return Response({'success': 'User logged in successfully'})
             return Response({'error': 'Invalid credentials Auth failed'})
         except:
             return Response({'error': 'Something went wrong when logging in'})

@@ -10,10 +10,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-    isAuthenticated: null,
-    username: '',
-    first_name: '',
-    email: ''
+    isAuthenticated: null
 }
 
 export default function(state = initialState, action) {
@@ -34,13 +31,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: true,
-                username: payload.username
             }
         case LOGOUT_SUCCESS:
             return {
                 ...state,
                 isAuthenticated: false,
-                username: ''
             }
         case REGISTER_FAIL:
         case LOGIN_FAIL:
