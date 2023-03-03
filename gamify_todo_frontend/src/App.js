@@ -1,7 +1,8 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Layout from './hocs/Layout';
+import PrivateRoute from './hocs/PrivateRoute';
 
 import Home from './containers/Home';
 import Login from './containers/Login';
@@ -17,7 +18,11 @@ const App = () => (
       <Layout>
         <Routes>
           <Route exact path="/" element={ <Home/> } />
-          <Route exact path="/dashboard" element={ <Dashboard/> } />
+          <Route exact path="/dashboard" element={ 
+            <RequireAuth redirectTo="/login">
+            <Dashboard/> 
+            </RequireAuth>
+            } />
           <Route exact path="/login" element={ <Login/> } />
           <Route exact path="/register" element={ <Register/> } />
         </Routes>
@@ -25,5 +30,10 @@ const App = () => (
     </BrowserRouter>
   </Provider>
 );
+
+function RequireAuth({ children, redirectTo }) {
+  let isAuthenticated = getAuth();
+  return isAuthenticated ? children : <Navigate to={redirectTo} />;
+}
 
 export default App;
