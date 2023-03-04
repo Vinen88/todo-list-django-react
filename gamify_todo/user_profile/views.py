@@ -1,7 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.db.models import Sum
 from .models import UserProfile
 from .serializers import UserProfileSerializer
+
 
 class GetUserProfileView(APIView):
     def get(self, request, format=None):
@@ -27,3 +29,12 @@ class UpdateUserProfileView(APIView):
             return Response({ 'profile': user_profile.data, 'username': str(username)}) # type: ignore
         except:
             return Response({ 'error': 'profile update failed' })
+        
+class GetLeaderboardView(APIView):
+    def get(self, request, format=None):
+        try:
+            #might want to try just making it return the username and the score only
+            top_profiles = UserProfile.objects.all().order_by('-points')[:10] # type: ignore
+            return Response({ 'top_users': top_profiles})
+        except:
+            return Response({ 'error': 'User not found' })

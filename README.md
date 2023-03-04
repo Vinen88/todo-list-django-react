@@ -45,7 +45,7 @@ might want to switch package.json scripts -> build to "rm -rf ../gamify_todo/bui
 
 ## Lessions learned
 
-dont write your own auth from scratch use a library maybe try [Auth0 for react](https://auth0.com/blog/complete-guide-to-react-user-authentication/) next time. or in the future. Could also use [react auth kit](https://www.npmjs.com/package/react-auth-kit)
+dont write your own auth from scratch use a library maybe try [Auth0 for react](https://auth0.com/blog/complete-guide-to-react-user-authentication/) next time. or in the future. Could also use [react auth kit](https://www.npmjs.com/package/react-auth-kit) first time mulligan I guess?
 
 ## known issues
 

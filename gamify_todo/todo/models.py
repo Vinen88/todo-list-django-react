@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+# from django.contrib.auth import get_user_model
 
 # Create your models here.
+# User = get_user_model() #here just incase
 
 def one_week_hence():
     return timezone.now() + timezone.timedelta(days=7)
@@ -20,4 +22,4 @@ class Todo(models.Model):
         return self.title
     
     class Meta:
-        ordering = ['due_date']
+        ordering = ['due_date'] #this might mess things up but who knows
