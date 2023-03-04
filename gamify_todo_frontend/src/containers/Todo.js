@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Modal from "./components/Modal";
+import Modal from "../components/Modal";
 import axios from "axios";
 
-class App3 extends Component {
+class Todo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -160,4 +160,4 @@ class App3 extends Component {
   }
 }
 
-export default App3;
+export default Todo;

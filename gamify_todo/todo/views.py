@@ -11,5 +11,6 @@ def say_hello(request):
     return HttpResponse('Hello World!')
 
 class TodoView(viewsets.ModelViewSet):
-    serializer_class = TodoSerializer
-    queryset = Todo.objects.all()
+    def get(self, request, format=None):
+        serializer_class = TodoSerializer
+        queryset = Todo.objects.get(user=request.user)

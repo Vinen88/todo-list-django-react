@@ -23,6 +23,9 @@ const navbar = ({ isAuthenticated, logout }) => {
             <li className="nav-item">
                 <a className="nav-link" onClick={logout} href="#!">Logout</a>
             </li>
+            <li className="nav-item">
+                <NavLink className="nav-link" to="/todo">Todo</NavLink>
+            </li>
         </Fragment>
     );
 
