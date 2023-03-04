@@ -2,7 +2,9 @@ import {
     LOAD_USER_PROFILE_FAIL,
     LOAD_USER_PROFILE_SUCCESS,
     UPDATE_USER_PROFILE_FAIL,
-    UPDATE_USER_PROFILE_SUCCESS
+    UPDATE_USER_PROFILE_SUCCESS,
+    LOAD_LEADERBOARD_FAIL,
+    LOAD_LEADERBOARD_SUCCESS
 } from '../actions/types';
 
 const initialState = {
@@ -29,6 +31,8 @@ export default function(state = initialState, action) {
                 first_name: '',
                 email: ''
             }
+        case LOAD_LEADERBOARD_FAIL:
+        case LOAD_LEADERBOARD_SUCCESS:
         case UPDATE_USER_PROFILE_FAIL:
             return {
                 ...state

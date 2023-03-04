@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "../components/Modal";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 class Todo extends Component {
   constructor(props) {
@@ -34,21 +35,35 @@ class Todo extends Component {
 
   handleSubmit = (item) => {
     this.toggle();
-
+    const config = {
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRFToken': Cookies.get('csrftoken')
+      }
+    };
     if (item.id) {
+      
       axios
-        .put(`/api/todos/${item.id}/`, item)
+        .put(`/api/todos/${item.id}/`, item, config)
         .then((res) => this.refreshList());
       return;
     }
     axios
-      .post("/api/todos/", item)
+      .post("/api/todos/", item, config)
       .then((res) => this.refreshList());
   };
 
   handleDelete = (item) => {
+    const config = {
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRFToken': Cookies.get('csrftoken')
+      }
+    };
     axios
-      .delete(`/api/todos/${item.id}/`)
+      .delete(`/api/todos/${item.id}/`, config)
       .then((res) => this.refreshList());
   };
 

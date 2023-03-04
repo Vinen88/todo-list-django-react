@@ -21,10 +21,13 @@ const navbar = ({ isAuthenticated, logout }) => {
                 <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
             </li>
             <li className="nav-item">
-                <a className="nav-link" onClick={logout} href="#!">Logout</a>
+                <NavLink className="nav-link" to="/todo">Todo</NavLink>
             </li>
             <li className="nav-item">
-                <NavLink className="nav-link" to="/todo">Todo</NavLink>
+                <NavLink className="nav-link" to="/leaderboard">Leaderboard</NavLink>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link" onClick={logout} href="#!">Logout</a>
             </li>
         </Fragment>
     );

@@ -4,7 +4,9 @@ import {
     LOAD_USER_PROFILE_FAIL,
     LOAD_USER_PROFILE_SUCCESS,
     UPDATE_USER_PROFILE_FAIL,
-    UPDATE_USER_PROFILE_SUCCESS
+    UPDATE_USER_PROFILE_SUCCESS,
+    LOAD_LEADERBOARD_FAIL,
+    LOAD_LEADERBOARD_SUCCESS
 } from "./types";
 
 export const load_user = () => async dispatch => {
@@ -62,6 +64,32 @@ export const update_profile = (first_name, email) => async dispatch => {
     } catch(err){
         dispatch({
             type: UPDATE_USER_PROFILE_FAIL
+        });
+    }
+};
+
+export const load_leaderboard = () => async dispatch => {
+    const config = {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    };
+    try{
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/profile/leaderboard/`, config);
+        if (res.data.error){
+            dispatch({
+                type: LOAD_LEADERBOARD_FAIL
+            });
+        } else {
+            dispatch({
+                type: LOAD_LEADERBOARD_SUCCESS,
+                payload: res.data
+            });
+        }
+    } catch(err){
+        dispatch({
+            type: LOAD_USER_PROFILE_FAIL
         });
     }
 };

@@ -8,6 +8,7 @@ import Login from './containers/Login';
 import Register from './containers/Register';
 import Dashboard from './containers/Dashboard';
 import Todo from './containers/Todo';
+import Leaderboard from './containers/Leaderboard';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -22,6 +23,7 @@ const App = () => (
           <Route exact path="/login" element={ <Login/> } />
           <Route exact path="/register" element={ <Register/> } />
           <Route exact path="/todo" element = { <Todo/> } />
+          <Route exact path="/leaderboard" element = { <Leaderboard/> } />
         </Routes>
       </Layout>
     </BrowserRouter>
