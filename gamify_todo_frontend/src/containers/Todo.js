@@ -13,6 +13,7 @@ class Todo extends Component {
       activeItem: {
         title: "",
         description: "",
+        points: "",
         completed: false,
       },
     };
@@ -42,15 +43,24 @@ class Todo extends Component {
           'X-CSRFToken': Cookies.get('csrftoken')
       }
     };
+    const body = JSON.stringify({ 
+      'withCredentials': true,
+      id: item.id,
+      title: item.title,
+      description: item.description,
+      points: item.points,
+      completed: item.completed,
+      'withCredentials': true
+    });
     if (item.id) {
       
       axios
-        .put(`/api/todos/${item.id}/`, item, config)
+        .put(`/api/todos/${item.id}/`, body, config)
         .then((res) => this.refreshList());
       return;
     }
     axios
-      .post("/api/todos/", item, config)
+      .post("/api/todos/", body, config)
       .then((res) => this.refreshList());
   };
 
@@ -62,13 +72,16 @@ class Todo extends Component {
           'X-CSRFToken': Cookies.get('csrftoken')
       }
     };
+    const body = JSON.stringify({
+      'withCredentials': true
+    });
     axios
-      .delete(`/api/todos/${item.id}/`, config)
+      .delete(`/api/todos/${item.id}/`, body, config)
       .then((res) => this.refreshList());
   };
 
   createItem = () => {
-    const item = { title: "", description: "", completed: false };
+    const item = { title: "", description: "", points: "",completed: false };
 
     this.setState({ activeItem: item, modal: !this.state.modal });
   };

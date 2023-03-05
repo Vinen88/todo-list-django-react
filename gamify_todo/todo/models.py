@@ -10,7 +10,7 @@ def one_week_hence():
     return timezone.now() + timezone.timedelta(days=7)
 
 class Todo(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     title = models.CharField(max_length=120)
     description = models.TextField(max_length=500, blank=True) #blank=True for optional description
     created_date = models.DateTimeField(auto_now_add=True)

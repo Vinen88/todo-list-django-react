@@ -16,6 +16,7 @@ class TodoView(viewsets.ModelViewSet):
     queryset = Todo.objects.all()
     #override perform_create to add user to todo
     def perform_create(self, serializer):
+        print("create task")
         serializer.save(user=self.request.user)
         
     #override get_queryset to only return todos for the current user
@@ -26,7 +27,13 @@ class TodoView(viewsets.ModelViewSet):
         #attempt to update points without changing how the serializer works
         data = self.request.data # type: ignore
         completed = data['completed']
-        if self.request.completed == 'true' or self.request.completed == True: # type: ignore
+        if completed: 
             #add points to userprofile
-            UserProfile.objects.filter(user=self.request.user).update(score=user.score + data['points']) # type: ignore
+            user = self.request.user
+            userProfile = UserProfile.objects.get(user=user)
+            todo = Todo.objects.get(id=data['id']) # type: ignore
+            
+            points = userProfile.points + todo.points
+            print(points, "UPDATED POINTS")
+            UserProfile.objects.filter(user=user).update(points=points) # type: ignore
         serializer.save()  #user=self.request.user) trying without this first as that is default as far as I can find
