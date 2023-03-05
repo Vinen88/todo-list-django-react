@@ -25,13 +25,13 @@ const Leaderboard = () => {
                 <h1 className = 'display-4'>Leaderboard</h1>
                 <p className = 'lead'>These are our users who have scored the most points!</p>
                 <hr className = 'mt-4' />
-                <ol className='list-group list-group-numbered'>
+                <ul className='list-group list-group-numbered'>
                 {leaderboard.map((user, index) => {
                     return(
-                        <li key={index}>{user.user} - {user.points}</li>
+                        <li className="list-group-item d-flex align-items-center" key={index}> {user.user} - {user.points}</li>
                     )
                 })}
-                </ol>
+                </ul>
             </div>
         </div>
     );

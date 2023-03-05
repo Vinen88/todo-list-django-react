@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import Modal from "../components/Modal";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { Alert } from "reactstrap";
 
 class Todo extends Component {
   constructor(props) {
@@ -28,6 +29,12 @@ class Todo extends Component {
     dateObj.setDate(dateObj.getDate()+ numberOfWeeks * 7);
     return dateObj;
   }
+
+  formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return new Date(dateString).toLocaleDateString(undefined, options)
+  }
+
   refreshList = () => {
     axios
       .get("/api/todos/")
@@ -35,6 +42,10 @@ class Todo extends Component {
       .catch((err) => console.log(err));
   };
 
+
+  toastRefreshList = () => {
+
+  };
   toggle = () => {
     this.setState({ modal: !this.state.modal });
   };
@@ -49,7 +60,6 @@ class Todo extends Component {
       }
     };
     const body = JSON.stringify({ 
-      'withCredentials': true,
       id: item.id,
       title: item.title,
       description: item.description,
@@ -59,11 +69,12 @@ class Todo extends Component {
       'withCredentials': true
     });
     if (item.id) {
-      
       axios
         .put(`/api/todos/${item.id}/`, body, config)
-        .then((res) => this.refreshList());
-      return;
+        .then((res) => {
+          this.refreshList();
+        });
+        return;
     }
     axios
       .post("/api/todos/", body, config)
@@ -140,7 +151,7 @@ class Todo extends Component {
           }`}
           title={item.description}
         >
-          {item.title}
+          {item.title} - Due: {this.formatDate(item.due_date)}
         </span>
         
         <span>

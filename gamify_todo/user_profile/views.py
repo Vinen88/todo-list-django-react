@@ -29,12 +29,9 @@ class UpdateUserProfileView(APIView):
         user_profile = UserProfile.objects.get(user=user) 
         user_profile = UserProfileSerializer(user_profile)
         return Response({ 'profile': user_profile.data, 'username': str(username)}) 
-    #except:
-        #    return Response({ 'error': 'profile update failed' })
         
 class GetLeaderboardView(APIView):
     def get(self, request, format=None):
-        #might want to try just making it return the username and the score only
         top_profiles = UserProfile.objects.all().order_by('-points')[:10]
         serialized_profiles = []
         for user in top_profiles:

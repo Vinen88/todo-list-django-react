@@ -31,13 +31,6 @@ export default function(state = initialState, action) {
                 first_name: '',
                 email: ''
             }
-        case LOAD_LEADERBOARD_SUCCESS:
-            return {
-                ...state,
-                top_users: payload.top_users
-            }
-        
-        case LOAD_LEADERBOARD_FAIL:
         case UPDATE_USER_PROFILE_FAIL:
             return {
                 ...state
