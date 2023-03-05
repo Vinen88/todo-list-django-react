@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Datetime from 'react-datetime';
+import "react-datetime/css/react-datetime.css";
 import {
   Button,
   Modal,
@@ -60,6 +62,13 @@ export default class CustomModal extends Component {
                 onChange={this.handleChange}
                 placeholder="Enter Todo description"
               />
+            </FormGroup>
+            <FormGroup>
+              <Label for="todo-date">Date</Label>
+              <Datetime 
+                selected={this.state.activeItem.end_Date} 
+                name="due_date"
+                />
             </FormGroup>
             <FormGroup check>
               <Label check>

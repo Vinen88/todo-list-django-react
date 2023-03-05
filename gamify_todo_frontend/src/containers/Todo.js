@@ -14,6 +14,7 @@ class Todo extends Component {
         title: "",
         description: "",
         points: "",
+        due_date: new Date(),
         completed: false,
       },
     };
@@ -49,6 +50,7 @@ class Todo extends Component {
       title: item.title,
       description: item.description,
       points: item.points,
+      due_date: item.due_date,
       completed: item.completed,
       'withCredentials': true
     });
@@ -81,7 +83,7 @@ class Todo extends Component {
   };
 
   createItem = () => {
-    const item = { title: "", description: "", points: "",completed: false };
+    const item = { title: "", description: "", points: "", due_date: new Date(), completed: false };
 
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
@@ -136,6 +138,7 @@ class Todo extends Component {
         >
           {item.title}
         </span>
+        
         <span>
           <button
             className="btn btn-secondary mr-2"
