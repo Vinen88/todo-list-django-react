@@ -32,8 +32,14 @@ class TodoView(viewsets.ModelViewSet):
             user = self.request.user
             userProfile = UserProfile.objects.get(user=user)
             todo = Todo.objects.get(id=data['id']) # type: ignore
-            
             points = userProfile.points + todo.points
-            print(points, "UPDATED POINTS")
             UserProfile.objects.filter(user=user).update(points=points) # type: ignore
+        else:
+            todo = Todo.objects.get(id=data['id'])
+            if todo.completed:
+                #remove points from userprofile
+                user = self.request.user
+                userProfile = UserProfile.objects.get(user=user)
+                points = userProfile.points - todo.points
+                UserProfile.objects.filter(user=user).update(points=points)
         serializer.save()  #user=self.request.user) trying without this first as that is default as far as I can find

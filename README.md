@@ -36,21 +36,26 @@ might want to update template dirs in settings.py for django
 might want to switch package.json scripts -> build to "rm -rf ../gamify_todo/build && react-scripts build && cp -r build ../gamify_todo/build"
 "react-scripts build"
 
-## useful urls
+## useful sites/tutorials
 
-[base todo list](https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react)
-[starting a django project with postgres](https://stackpython.medium.com/how-to-start-django-project-with-a-database-postgresql-aaa1d74659d8)
-[postgres commands](https://www.postgresqltutorial.com/postgresql-administration/postgresql-show-tables/)
-[session based Auth](https://www.youtube.com/watch?v=89KrqjqPeZ0)
+- [base todo list](https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react)
+- [starting a django project with postgres](https://stackpython.medium.com/how-to-start-django-project-with-a-database-postgresql-aaa1d74659d8)
+- [CRUD in Django Rest Framework and React](https://saasitive.com/tutorial/crud-django-rest-framework-react/)
+- [postgres commands](https://www.postgresqltutorial.com/postgresql-administration/postgresql-show-tables/)
+- [session based Auth](https://www.youtube.com/watch?v=89KrqjqPeZ0)
+- [django ModelViewSet docs](https://www.cdrf.co/3.1/rest_framework.viewsets/ModelViewSet.html)
 
 ## Lessions learned
 
-dont write your own auth from scratch use a library maybe try [Auth0 for react](https://auth0.com/blog/complete-guide-to-react-user-authentication/) next time. or in the future. Could also use [react auth kit](https://www.npmjs.com/package/react-auth-kit) first time mulligan I guess?
+- dont write your own auth from scratch use a library maybe try [Auth0 for react](https://auth0.com/blog/complete-guide-to-react-user-authentication/) next time. or in the future. Could also use [react auth kit](https://www.npmjs.com/package/react-auth-kit) first time mulligan I guess?
+- ask more questions! how should I gamify this, right now every task is worth 10 points.
+- made some guesses on gamification as well. Ask sooner not later.
 
 ## known issues
 
 - routes aren't protected, you will just get unuseable access to them. /dashboard and /todo
     - [try this](https://stackoverflow.com/questions/62384395/protected-route-with-react-router-v6)
+    - [or this](https://stackoverflow.com/questions/66289122/how-to-create-a-protected-route-with-react-router-dom)
 - registration sends plain text passwords.
 - mobile interface is broken.
 - axios requests could be updated to use .then/.catch methods instead of nesting them in a try/catch

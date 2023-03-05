@@ -13,8 +13,8 @@ class Todo extends Component {
       activeItem: {
         title: "",
         description: "",
-        points: "",
-        due_date: new Date(),
+        points: 10,
+        due_date: this.addWeeksToDate(new Date(), 1), // 1 week from now as default
         completed: false,
       },
     };
@@ -24,6 +24,10 @@ class Todo extends Component {
     this.refreshList();
   }
 
+  addWeeksToDate = (dateObj, numberOfWeeks) => {
+    dateObj.setDate(dateObj.getDate()+ numberOfWeeks * 7);
+    return dateObj;
+  }
   refreshList = () => {
     axios
       .get("/api/todos/")
@@ -83,7 +87,7 @@ class Todo extends Component {
   };
 
   createItem = () => {
-    const item = { title: "", description: "", points: "", due_date: new Date(), completed: false };
+    const item = { title: "", description: "", points: 10, due_date: new Date(), completed: false };
 
     this.setState({ activeItem: item, modal: !this.state.modal });
   };

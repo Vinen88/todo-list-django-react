@@ -64,7 +64,7 @@ export default class CustomModal extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="todo-date">Date</Label>
+              <Label for="todo-date">To complete by:</Label>
               <Datetime 
                 selected={this.state.activeItem.end_Date} 
                 name="due_date"
