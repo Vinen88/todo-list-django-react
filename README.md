@@ -1,6 +1,6 @@
 # todo-list-django-react
 
-Django/React/PostgreSQL project for Stantec
+Django/React/PostgreSQL project
 
 django username: root
 django password: password
@@ -9,6 +9,9 @@ dont know if consistant for docker or not but its here.
 ## about
 
 Backend is entirely dockerized, might to to stop docker and run again on first build. database sometimes builds slower than web even though web depends on database
+
+10 points are awarded uppon completion of a todo, all todos are worth the same. points are removed on uncompletion.
+leaderboard shows users who have completed the most tasks.
 
 ## how to run
 
@@ -31,10 +34,6 @@ docker-compose run web python manage.py [manage.py commands]
 ```console
 npm run build
 ```
-
-might want to update template dirs in settings.py for django
-might want to switch package.json scripts -> build to "rm -rf ../gamify_todo/build && react-scripts build && cp -r build ../gamify_todo/build"
-"react-scripts build"
 
 ## useful sites/tutorials
 
@@ -61,3 +60,6 @@ might want to switch package.json scripts -> build to "rm -rf ../gamify_todo/bui
 - axios requests could be updated to use .then/.catch methods instead of nesting them in a try/catch
 - most of the bodies of the backend are wrapped in try catch, (account/userprofile apps) not sure how I feel about that.
 - there are no real rewards. In the future I could do avatars that unlock with points earned or something along those lines.
+- using alerts for notifications.
+- docker shoud be able to run whole thing, shoudnt need to restart after first run because database is slow to create.
+- all tasks are worth the same.

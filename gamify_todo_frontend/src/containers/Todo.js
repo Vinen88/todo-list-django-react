@@ -1,8 +1,7 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component } from "react";
 import Modal from "../components/Modal";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { Alert } from "reactstrap";
 
 class Todo extends Component {
   constructor(props) {
@@ -42,10 +41,6 @@ class Todo extends Component {
       .catch((err) => console.log(err));
   };
 
-
-  toastRefreshList = () => {
-
-  };
   toggle = () => {
     this.setState({ modal: !this.state.modal });
   };
@@ -72,6 +67,11 @@ class Todo extends Component {
       axios
         .put(`/api/todos/${item.id}/`, body, config)
         .then((res) => {
+          if (item.completed){
+            alert("You have completed a task! You have earned " + item.points + " points!");
+          } else{
+            alert("You have updated a task!");
+          }
           this.refreshList();
         });
         return;

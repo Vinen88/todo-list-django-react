@@ -2,9 +2,7 @@ import {
     LOAD_USER_PROFILE_FAIL,
     LOAD_USER_PROFILE_SUCCESS,
     UPDATE_USER_PROFILE_FAIL,
-    UPDATE_USER_PROFILE_SUCCESS,
-    LOAD_LEADERBOARD_FAIL,
-    LOAD_LEADERBOARD_SUCCESS
+    UPDATE_USER_PROFILE_SUCCESS
 } from '../actions/types';
 
 const initialState = {
@@ -29,7 +27,8 @@ export default function(state = initialState, action) {
                 ...state,
                 username: '',
                 first_name: '',
-                email: ''
+                email: '',
+                points: 0
             }
         case UPDATE_USER_PROFILE_FAIL:
             return {

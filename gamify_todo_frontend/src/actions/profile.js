@@ -33,6 +33,21 @@ export const load_user = () => async dispatch => {
     }
 };
 
+export const getUserPoints = async () => {
+    const config = {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    };
+    await axios
+      .get(`${process.env.REACT_APP_API_URL}/profile/user/`, config)
+      .then((res) => {
+        return res.data['profile']['points'];
+      })
+      .catch((err) => console.log(err));
+};
+
 export const update_profile = (first_name, email) => async dispatch => {
     const config = {
         headers: {
