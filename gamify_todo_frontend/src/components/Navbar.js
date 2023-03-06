@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
+import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 
 const navbar = ({ isAuthenticated, logout }) => {
     const guestLinks =  (
