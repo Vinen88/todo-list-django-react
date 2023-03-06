@@ -18,9 +18,10 @@ leaderboard shows users who have completed the most tasks.
 1. start by navigating to gamify_todo_frontend
 2. run `npm run build`
 3. navigate to gamify_todo
-  - you might have to run `docker-compose run web python manage.py makemigrations` and `migrate` on first run
+  - might have to run `docker-compose run web python manage.py makemigrations` and `migrate` on first run
 4. run `docker-compose up --build`
-5. open webbrowser to [localhost:8000](http://localhost:8000/)
+  - first build might fail to connect to database as it takes a bit to initialize, just restart docker and run the command again and it will work
+6. open webbrowser to [localhost:8000](http://localhost:8000/)
 
 ## useful commands
 
