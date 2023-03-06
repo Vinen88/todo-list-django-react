@@ -57,7 +57,6 @@ npm run build
   - [try this](https://stackoverflow.com/questions/62384395/protected-route-with-react-router-v6)
   - [or this](https://stackoverflow.com/questions/66289122/how-to-create-a-protected-route-with-react-router-dom)
 - registration sends plain text passwords.
-- mobile interface is broken.
 - axios requests could be updated to use .then/.catch methods instead of nesting them in a try/catch
 - most of the bodies of the backend are wrapped in try catch, (account/userprofile apps) not sure how I feel about that.
 - there are no real rewards. In the future I could do avatars that unlock with points earned or something along those lines.
@@ -67,3 +66,4 @@ npm run build
 - no notifications for tasks near due date.
 - due dates are entirely pointless at the moment, it would be nice to tie points to how far from due date in future.
 - userprofile endpoints arent super restful, it would be better if it was {base}/profile/{user_id}
+- mobile interface for todo's isnt perfect.
