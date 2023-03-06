@@ -27,7 +27,9 @@ export default class CustomModal extends Component {
     if (e.target.type === "checkbox") {
       value = e.target.checked;
     }
-
+    if (e.target.type === "datetime") {
+      console.log()
+    }
     const activeItem = { ...this.state.activeItem, [name]: value };
 
     this.setState({ activeItem });
@@ -35,7 +37,6 @@ export default class CustomModal extends Component {
 
   render() {
     const { toggle, onSave } = this.props;
-
     return (
       <Modal isOpen={true} toggle={toggle}>
         <ModalHeader toggle={toggle}>Todo Item</ModalHeader>
@@ -66,7 +67,14 @@ export default class CustomModal extends Component {
             <FormGroup>
               <Label for="todo-date">To complete by:</Label>
               <Datetime 
-                selected={this.state.activeItem.end_Date} 
+                selected={this.state.activeItem.due_date} 
+                value={this.state.activeItem.due_date}
+                onChange={
+                  (date) => {
+                    const activeItem = { ...this.state.activeItem, due_date: date };
+                    this.setState({ activeItem });
+                  }
+                }
                 name="due_date"
                 />
             </FormGroup>

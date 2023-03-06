@@ -49,6 +49,7 @@ npm run build
 - dont write your own auth from scratch use a library maybe try [Auth0 for react](https://auth0.com/blog/complete-guide-to-react-user-authentication/) next time. or in the future. Could also use [react auth kit](https://www.npmjs.com/package/react-auth-kit) first time mulligan I guess?
 - ask more questions! how should I gamify this, right now every task is worth 10 points.
 - made some guesses on gamification as well. Ask sooner not later.
+- dont let the backend suffer because you cant figure out front end... it should be better than it is.
 
 ## known issues
 
@@ -63,3 +64,6 @@ npm run build
 - using alerts for notifications.
 - docker shoud be able to run whole thing, shoudnt need to restart after first run because database is slow to create.
 - all tasks are worth the same.
+- no notifications for tasks near due date.
+- due dates are entirely pointless at the moment, it would be nice to tie points to how far from due date in future.
+- userprofile endpoints arent super restful, it would be better if it was {base}/profile/{user_id}
