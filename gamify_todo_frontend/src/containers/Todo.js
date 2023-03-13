@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Modal from "../components/Modal";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class Todo extends Component {
@@ -21,6 +21,13 @@ class Todo extends Component {
       },
     };
   }
+
+  notify = (message, type) => toast(
+    message, {
+      position: toast.POSITION.TOP_CENTER,
+      transition: Flip,
+      type: type,
+    });
 
   componentDidMount() {
     this.refreshList();
@@ -49,8 +56,16 @@ class Todo extends Component {
 
   handleSubmit = (item) => {
     this.toggle();
-    const notifyPoints = () => toast("You have completed a task! You have earned " + item.points + " points!");
-    const notify = (message) => toast(message);
+    const notifyPoints = () => toast.success(
+      "You have completed a task! You have earned " + item.points + " points!", {
+        position: toast.POSITION.TOP_CENTER,
+        transition: Flip,
+      });
+    // const notify = (message) => toast(
+    //   message, {
+    //     position: toast.POSITION.TOP_CENTER,
+    //     transition: Flip,
+    //   });
     const config = {
       headers: {
           'Accept': 'application/json',
@@ -74,7 +89,7 @@ class Todo extends Component {
           if (item.completed){
             notifyPoints();
           } else{
-            notify("You have updated a task!");
+            this.notify("You have updated a task!", "success");
           }
           this.refreshList();
         });
@@ -98,7 +113,10 @@ class Todo extends Component {
     });
     axios
       .delete(`/api/todos/${item.id}/`, body, config)
-      .then((res) => this.refreshList());
+      .then((res) => {
+        this.notify("You have deleted a task!", "warn");
+        this.refreshList();
+      });
   };
 
   createItem = () => {
@@ -179,9 +197,6 @@ class Todo extends Component {
   render() {
     return (
       <main className="container">
-        <div>
-          <ToastContainer />
-        </div>
         <h1 className="text-white text-uppercase text-center mt-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">

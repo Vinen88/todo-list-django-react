@@ -13,8 +13,15 @@ import Leaderboard from './containers/Leaderboard';
 import { Provider } from 'react-redux';
 import store from './store';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const App = () => (
   <Provider store={store}>
+    <div>
+      <ToastContainer />
+    </div>
     <BrowserRouter>
       <Layout>
         <Routes>

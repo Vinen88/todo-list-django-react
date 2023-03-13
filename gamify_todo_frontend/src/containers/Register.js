@@ -4,8 +4,17 @@ import { connect } from 'react-redux';
 import { register } from '../actions/auth';
 import { Navigate } from 'react-router-dom';
 import CSRFToken from '../components/CSRFToken';
+import { toast, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Register = ({ register, isAuthenticated }) => {
+    const notify = (message, type) => toast(
+        message, {
+          position: toast.POSITION.TOP_CENTER,
+          transition: Flip,
+          type: type,
+        });
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -17,16 +26,16 @@ const Register = ({ register, isAuthenticated }) => {
     const onSubmit = e => {
         e.preventDefault();
         if (password === re_password){
-            console.log('SUCCESS');
-            console.log({username, password, re_password});
+            notify('Account created!', 'success');
             register(username, password, re_password);
             setAccountCreated(true);
         }
     };
     if (isAuthenticated)
         return <Navigate to="/dashboard" />
-    else if (accountCreated)
+    else if (accountCreated){
         return <Navigate to="/login" />
+    }
     
     return(
         <div className='container mt-5'>

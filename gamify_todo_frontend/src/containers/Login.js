@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { login } from '../actions/auth';
 import { Navigate } from 'react-router-dom';
 import CSRFToken from '../components/CSRFToken';
+import { toast, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
@@ -17,8 +19,14 @@ const Login = ({ login, isAuthenticated }) => {
         login(username, password);
         };
 
-    if (isAuthenticated)
+    if (isAuthenticated) {
+        toast('Login successful! Welcome Back!', {
+            position: toast.POSITION.TOP_CENTER,
+            transition: Flip,
+            type: 'success',
+        });
         return <Navigate to="/todo" />
+    }
     
     return(
         <div className='container mt-5'>
