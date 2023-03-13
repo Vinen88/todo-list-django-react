@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Modal from "../components/Modal";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Todo extends Component {
   constructor(props) {
@@ -47,6 +49,8 @@ class Todo extends Component {
 
   handleSubmit = (item) => {
     this.toggle();
+    const notifyPoints = () => toast("You have completed a task! You have earned " + item.points + " points!");
+    const notify = (message) => toast(message);
     const config = {
       headers: {
           'Accept': 'application/json',
@@ -68,9 +72,9 @@ class Todo extends Component {
         .put(`/api/todos/${item.id}/`, body, config)
         .then((res) => {
           if (item.completed){
-            alert("You have completed a task! You have earned " + item.points + " points!");
+            notifyPoints();
           } else{
-            alert("You have updated a task!");
+            notify("You have updated a task!");
           }
           this.refreshList();
         });
@@ -175,6 +179,9 @@ class Todo extends Component {
   render() {
     return (
       <main className="container">
+        <div>
+          <ToastContainer />
+        </div>
         <h1 className="text-white text-uppercase text-center mt-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
