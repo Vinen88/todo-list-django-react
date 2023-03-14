@@ -109,11 +109,14 @@ class Todo extends Component {
       }
     };
     const body = JSON.stringify({
-      'withCredentials': true
+      'withCredentials': true,
+      id: item.id,
     });
+    console.log("body: ", body);
     axios
-      .delete(`/api/todos/${item.id}/`, body, config)
+      .delete(`/api/todos/${item.id}/`, config)
       .then((res) => {
+        console.log("res: ", res);
         this.notify("You have deleted a task!", "warn");
         this.refreshList();
       });
