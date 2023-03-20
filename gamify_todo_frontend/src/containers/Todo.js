@@ -43,10 +43,24 @@ class Todo extends Component {
     return new Date(dateString).toLocaleDateString(undefined, options)
   }
 
+  toastDueSoon = (dateString, title) => {
+    const date = new Date(dateString);
+    const currentDate = new Date();
+    const diffTime = Math.abs(date - currentDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays <= 1){
+      this.notify(`${ title } is due today!`, "warn");
+    }
+  }
   refreshList = () => {
     axios
       .get("/api/todos/")
-      .then((res) => this.setState({ todoList: res.data }))
+      .then((res) => {
+        res.data.forEach(element => {
+          this.toastDueSoon(element.due_date, element.title);
+        });
+        this.setState({ todoList: res.data });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -61,11 +75,6 @@ class Todo extends Component {
         position: toast.POSITION.TOP_CENTER,
         transition: Flip,
       });
-    // const notify = (message) => toast(
-    //   message, {
-    //     position: toast.POSITION.TOP_CENTER,
-    //     transition: Flip,
-    //   });
     const config = {
       headers: {
           'Accept': 'application/json',
